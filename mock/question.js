@@ -39,11 +39,14 @@ module.exports = [
                //获取（查询）问卷
                url:'/api/question',
                method:'get',
-               response(){
+               response(ctx){
+                const {url = ''} = ctx;
+                const isStar = url.indexOf('isStar=true') >=0;
+                const isDeleted = url.indexOf('isDeleted=true')  >=0;
                    return {
                        errno:0,
                        data:{
-                           list:createQuestionList(),
+                           list:createQuestionList({num:12,isStar,isDeleted}),
                            total:20 
                        }
                    }

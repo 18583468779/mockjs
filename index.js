@@ -6,10 +6,10 @@ const app = new Koa();
 const router = new Router();
 
 //模拟请求时间
-const getData = (fn)=>{
+const getData = (fn,ctx)=>{
    return new Promise((resolve,reject)=>{
         setTimeout(()=>{
-            const res =  fn()
+            const res =  fn(ctx)
             resolve(res)
         },1000)
     })
@@ -20,7 +20,7 @@ const getData = (fn)=>{
 mockList.forEach(item =>{
     const {url,method,response} = item;
     router[method](url,async ctx => {
-        const res = await getData(response)
+        const res = await getData(response,ctx)
         ctx.body = res
     })
 })

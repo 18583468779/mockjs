@@ -4,16 +4,18 @@ const Random = Mock.Random;
 
 
 
-function createQuestionList (num=12){
+function createQuestionList (option){
+    const {num=12,isStar=Random.boolean(),isDeleted = false} = option;
+
     const list = Array.from({length:num}).map(item => {
         return {
             _id:Random.id(),
             title: Random.ctitle(),
-            isStar: Random.boolean(),
+            isStar: isStar,
             isPublished: Random.boolean(),
             answerCount: Random.natural(),
             createdAt: Random.date(),
-            isDeleted:false
+            isDeleted:isDeleted
         }
     });
     return list;

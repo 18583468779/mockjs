@@ -40,13 +40,14 @@ module.exports = [
                url:'/api/question',
                method:'get',
                response(ctx){
-                const {url = ''} = ctx;
+                const {url = '',query} = ctx;
                 const isStar = url.indexOf('isStar=true') >=0;
                 const isDeleted = url.indexOf('isDeleted=true')  >=0;
+                const {page,pageSize} = query;
                    return {
                        errno:0,
                        data:{
-                           list:createQuestionList({num:12,isStar,isDeleted}),
+                           list:createQuestionList({num:pageSize,isStar,isDeleted}),
                            total:20 
                        }
                    }

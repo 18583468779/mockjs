@@ -48,9 +48,20 @@ module.exports = [
                        errno:0,
                        data:{
                            list:createQuestionList({num:pageSize,isStar,isDeleted}),
-                           total:20 
+                           total:100
                        }
                    }
                }
+    },
+    {
+        //更新问卷
+        url:'/api/question/:id',
+        method:'patch',
+        response(){
+            return {
+                errno:0,
+           
+            }
+        }
     }
 ]
